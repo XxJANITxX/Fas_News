@@ -45,12 +45,12 @@ export default function News(props) {
 
     // FetchData function which will call when the scroll reached end of page size
     const fetchMoreData = async () => {
-
+        
+        // Fetching news from News API
+        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pageSize=${props.pageSize}`;
+        
         // Setting page to next 
         setPage(page + 1);
-
-        // Fetching news from News API
-        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
         let data = await fetch(url);
         let parseData = await data.json();
 
@@ -66,7 +66,7 @@ export default function News(props) {
 
             <>
                 {/* Heading function */}
-                <h2 className='text-center my-5 py-2 bg-dark text-light rounded border border-primary border-3'>Fas News - Top Headlines on {capitalizeFirstLetter(props.category)}</h2>
+                <h2 className='text-center py-2 bg-dark text-light rounded border border-primary border-3' style={{marginTop:'75px'}}>Fas News - Top Headlines on {capitalizeFirstLetter(props.category)}</h2>
 
                 {/* Data container */}
                 <div className="container">
